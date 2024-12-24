@@ -1,0 +1,22 @@
+version: '3'
+services:
+  front:
+    image: node:22
+    container_name: front
+    ports:
+      - '8080:8000'
+    volumes:
+      - type: bind
+        source: ./front
+        target: /app
+    tty: true
+  # server:
+  #   image: golang:1.23
+  #   container_name: server
+  #   ports:
+  #     - '8081:8001'
+  #   volumes:
+  #     - type: bind
+  #       source: ./server
+  #       target: /go/src
+  #   tty: true
