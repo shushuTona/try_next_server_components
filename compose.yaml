@@ -10,13 +10,21 @@ services:
         source: ./front
         target: /app
     tty: true
-  # server:
-  #   image: golang:1.23
-  #   container_name: server
-  #   ports:
-  #     - '8081:8001'
-  #   volumes:
-  #     - type: bind
-  #       source: ./server
-  #       target: /go/src
-  #   tty: true
+    networks:
+      - backend
+  server:
+    image: golang:1.23
+    container_name: server
+    ports:
+      - '8081:8001'
+    volumes:
+      - type: bind
+        source: ./server
+        target: /go/src
+    tty: true
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
