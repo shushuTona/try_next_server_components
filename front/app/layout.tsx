@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { getTokne } from "../auth/csrf";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,18 +18,22 @@ export const metadata: Metadata = {
   description: "try_next_server_components",
 };
 
-export default function RootLayout({
+const  RootLayout = async ( {
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}> ) => {
+  const token = await getTokne();
   return (
     <html lang="ja">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <input id="CSRF_TOKEN" type="hidden" value={token.token} />
         {children}
       </body>
     </html>
   );
 }
+
+export default RootLayout;
