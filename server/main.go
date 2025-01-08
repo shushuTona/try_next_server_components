@@ -61,9 +61,11 @@ func main() {
 			fmt.Println("CSRF_TOKEN_OK")
 
 			http.SetCookie(w, &http.Cookie{
-				Name:    "session_id",
-				Value:   SESSION_ID,
-				Path:    "/",
+				Name:     "session_id",
+				Value:    SESSION_ID,
+				HttpOnly: true,
+				SameSite: http.SameSiteLaxMode,
+				Path:     "/",
 			})
 
 			storage = append(storage, SESSION_ID)
