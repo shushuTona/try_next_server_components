@@ -2,6 +2,7 @@ import LinkList from "@/server/linklist";
 import { checkLogin } from "../../auth/login";
 import { redirect } from "next/navigation";
 import { getTokne } from "../../auth/csrf";
+import { ClientComponent } from "./client";
 
 const fServerAction = async (formData: FormData) => {
     'use server';
@@ -26,6 +27,8 @@ const ServerActions = async () => {
                 <button type="submit">Try Server Actions</button>
             </form>
             <LinkList />
+
+            <ClientComponent />
         </main>
     )
 }
