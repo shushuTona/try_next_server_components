@@ -6,7 +6,6 @@ import (
 	"log"
 	"net/http"
 	"slices"
-	"time"
 )
 
 type GetTitle struct {
@@ -64,7 +63,6 @@ func main() {
 			http.SetCookie(w, &http.Cookie{
 				Name:    "session_id",
 				Value:   SESSION_ID,
-				Expires: time.Now().Add(24 * time.Hour),
 				Path:    "/",
 			})
 
